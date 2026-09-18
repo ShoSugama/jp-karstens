@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Member } from "@/lib/data/types";
 import Card from "./Card";
 import styles from "./MemberCard.module.css";
@@ -5,6 +6,15 @@ import styles from "./MemberCard.module.css";
 export default function MemberCard({ member }: { member: Member }) {
   return (
     <Card>
+      {member.photoUrl && (
+        <Image
+          src={member.photoUrl}
+          alt={member.name}
+          width={160}
+          height={160}
+          className={styles.photo}
+        />
+      )}
       <div className={styles.header}>
         <span className={styles.number}>#{member.number}</span>
         <div>

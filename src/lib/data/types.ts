@@ -15,7 +15,8 @@ export interface Member {
   position: string;
   department?: string;
   comment?: string;
-  photoUrl?: string;
+  photoFileName?: string; // public/images/ 配下のファイル名(ITが手動配置)
+  photoUrl?: string; // photoFileName から導出される "/images/xxx" パス
 }
 
 export interface NewsItem {
@@ -24,4 +25,6 @@ export interface NewsItem {
   date: string; // ISO date (YYYY-MM-DD)
   excerpt: string;
   body: string;
+  photoFileName?: string; // public/images/ 配下のファイル名(ITが手動配置)
+  photoUrl?: string; // photoFileName から導出される "/images/xxx" パス
 }

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:sharepoint": "tsx scripts/sync-sharepoint.mts",
+    "sync:sharepoint:dry": "tsx scripts/sync-sharepoint.mts --dry-run"
   },
   "dependencies": {
     "next": "16.3.5",
@@ -14,11 +16,13 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@azure/identity": "^4.13.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   }
 }

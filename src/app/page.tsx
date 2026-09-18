@@ -1,69 +1,63 @@
-import Image from "next/image";
+import Link from "next/link";
+import Container from "@/components/Container";
+import Card from "@/components/Card";
+import NewsListItem from "@/components/NewsListItem";
+import { getUpcomingGame } from "@/lib/data/schedule";
+import { getNewsList } from "@/lib/data/news";
 import styles from "./page.module.css";
 
-export default function Home() {
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export default async function Home() {
+  const [upcomingGame, newsList] = await Promise.all([
+    getUpcomingGame(),
+    getNewsList(),
+  ]);
+  const latestNews = newsList.slice(0, 3);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <Container>
+      <section className={styles.hero}>
+        <p className={styles.heroTitle}>社内野球部 公式サイト</p>
+        <p className={styles.heroLead}>
+          楽しく、真剣に。仕事の合間に白球を追いかける社内野球部です。
+          未経験者から経験者まで、一緒にプレーする仲間を募集しています。
+        </p>
+        <Link href="/contact" className={styles.cta}>
+          部員募集の詳細を見る
+        </Link>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>次の試合</h2>
+        {upcomingGame ? (
+          <Card>
+            <p>{formatDate(upcomingGame.date)}</p>
+            <p>
+              対戦相手: {upcomingGame.opponent} / 会場: {upcomingGame.venue} (
+              {upcomingGame.homeAway === "home" ? "ホーム" : "アウェイ"})
+            </p>
+          </Card>
+        ) : (
+          <p className={styles.emptyText}>予定されている試合はありません。</p>
+        )}
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>お知らせ</h2>
+        <ul className={styles.newsList}>
+          {latestNews.map((item) => (
+            <NewsListItem key={item.slug} item={item} />
+          ))}
+        </ul>
+      </section>
+    </Container>
   );
 }

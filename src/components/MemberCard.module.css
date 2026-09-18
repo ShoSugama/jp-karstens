@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  min-width: 2.5rem;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.position {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.department {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.comment {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "g1",
+    "date": "2026-10-04",
+    "opponent": "経理部レッドソックス",
+    "venue": "市民球場",
+    "homeAway": "home",
+    "status": "upcoming"
+  },
+  {
+    "id": "g2",
+    "date": "2026-10-18",
+    "opponent": "開発部ジャイアンツ",
+    "venue": "第二運動公園",
+    "homeAway": "away",
+    "status": "upcoming"
+  },
+  {
+    "id": "g3",
+    "date": "2026-08-16",
+    "opponent": "営業部イーグルス",
+    "venue": "第二運動公園",
+    "homeAway": "away",
+    "status": "finished",
+    "result": { "teamScore": 5, "opponentScore": 3 }
+  },
+  {
+    "id": "g4",
+    "date": "2026-07-05",
+    "opponent": "製造部ホークス",
+    "venue": "市民球場",
+    "homeAway": "home",
+    "status": "finished",
+    "result": { "teamScore": 2, "opponentScore": 6 }
+  }
+]

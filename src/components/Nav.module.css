@@ -1,0 +1,24 @@
+.nav {
+  overflow-x: auto;
+}
+
+.list {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.link {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: rgba(255, 255, 255, 0.15);
+}

@@ -1,0 +1,35 @@
+.item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.link {
+  display: block;
+  padding: 1rem 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: var(--color-surface);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.excerpt {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}

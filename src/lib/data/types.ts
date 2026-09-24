@@ -28,6 +28,14 @@ export interface PracticeSession {
   note?: string;
 }
 
+export interface Photo {
+  id: string;
+  fileName: string; // public/images/gallery/ 配下のファイル名(ITが手動配置)
+  url: string; // fileName から導出される "/images/gallery/xxx" パス
+  caption?: string;
+  date?: string; // ISO date (YYYY-MM-DD)、任意
+}
+
 export interface NewsItem {
   slug: string;
   title: string;

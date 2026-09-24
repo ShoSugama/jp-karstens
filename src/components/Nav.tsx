@@ -5,6 +5,7 @@ const LINKS = [
   { href: "/", label: "トップ" },
   { href: "/schedule", label: "試合日程" },
   { href: "/members", label: "メンバー紹介" },
+  { href: "/gallery", label: "フォトギャラリー" },
   { href: "/news", label: "ニュース" },
   { href: "/contact", label: "部員募集" },
 ];

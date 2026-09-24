@@ -38,13 +38,14 @@ jobs:
           SHAREPOINT_SITE_ID: ${{ secrets.SHAREPOINT_SITE_ID }}
           NEWS_LIST_ID: ${{ secrets.NEWS_LIST_ID }}
           MEMBERS_LIST_ID: ${{ secrets.MEMBERS_LIST_ID }}
+          PRACTICE_LIST_ID: ${{ secrets.PRACTICE_LIST_ID }}
         run: npx tsx scripts/sync-sharepoint.mts
 
       - name: Commit content changes if any
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/lib/mock/news.json src/lib/mock/members.json
+          git add src/lib/mock/news.json src/lib/mock/members.json src/lib/mock/practice.json
           if git diff --cached --quiet; then
             echo "No content changes"
           else

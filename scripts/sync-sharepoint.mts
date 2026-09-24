@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { ClientSecretCredential } from "@azure/identity";
-import type { Member, NewsItem } from "../src/lib/data/types";
+import type { Member, NewsItem, PracticeSession } from "../src/lib/data/types";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 
@@ -13,6 +13,7 @@ const REQUIRED_ENV = [
   "SHAREPOINT_SITE_ID",
   "NEWS_LIST_ID",
   "MEMBERS_LIST_ID",
+  "PRACTICE_LIST_ID",
 ] as const;
 
 function requireEnv(): Record<(typeof REQUIRED_ENV)[number], string> {
@@ -154,33 +155,69 @@ function mapMembers(items: GraphListItem[]): Member[] {
   });
 }
 
+function mapPracticeSessions(items: GraphListItem[]): PracticeSession[] {
+  const practice = items.map((item): PracticeSession => {
+    const fields = item.fields;
+    const startTime = String(fields.StartTime ?? "").trim();
+    const endTime = String(fields.EndTime ?? "").trim();
+    const venue = String(fields.Venue ?? "").trim();
+
+    if (!startTime)
+      throw new Error(`Practiceアイテム(id=${item.id})のStartTimeが空です`);
+    if (!endTime)
+      throw new Error(`Practiceアイテム(id=${item.id})のEndTimeが空です`);
+    if (!venue)
+      throw new Error(`Practiceアイテム(id=${item.id})のVenueが空です`);
+
+    return {
+      id: `p${item.id}`,
+      date: toDateOnly(fields.Date),
+      startTime,
+      endTime,
+      venue,
+      note: fields.Note ? String(fields.Note) : undefined,
+    };
+  });
+
+  return practice.sort((a, b) => a.date.localeCompare(b.date));
+}
+
 async function main() {
   const env = requireEnv();
   const accessToken = await getAccessToken(env);
 
-  const [newsRaw, membersRaw] = await Promise.all([
+  const [newsRaw, membersRaw, practiceRaw] = await Promise.all([
     fetchAllListItems(env.SHAREPOINT_SITE_ID, env.NEWS_LIST_ID, accessToken),
     fetchAllListItems(
       env.SHAREPOINT_SITE_ID,
       env.MEMBERS_LIST_ID,
       accessToken,
     ),
+    fetchAllListItems(
+      env.SHAREPOINT_SITE_ID,
+      env.PRACTICE_LIST_ID,
+      accessToken,
+    ),
   ]);
 
   const news = mapNewsItems(newsRaw);
   const members = mapMembers(membersRaw);
+  const practice = mapPracticeSessions(practiceRaw);
 
   if (DRY_RUN) {
     console.log("=== news.json (dry-run) ===");
     console.log(JSON.stringify(news, null, 2));
     console.log("=== members.json (dry-run) ===");
     console.log(JSON.stringify(members, null, 2));
+    console.log("=== practice.json (dry-run) ===");
+    console.log(JSON.stringify(practice, null, 2));
     return;
   }
 
   const rootDir = path.resolve(fileURLToPath(import.meta.url), "../..");
   const newsPath = path.join(rootDir, "src/lib/mock/news.json");
   const membersPath = path.join(rootDir, "src/lib/mock/members.json");
+  const practicePath = path.join(rootDir, "src/lib/mock/practice.json");
 
   await writeFile(newsPath, JSON.stringify(news, null, 2) + "\n", "utf-8");
   await writeFile(
@@ -188,9 +225,14 @@ async function main() {
     JSON.stringify(members, null, 2) + "\n",
     "utf-8",
   );
+  await writeFile(
+    practicePath,
+    JSON.stringify(practice, null, 2) + "\n",
+    "utf-8",
+  );
 
   console.log(
-    `SharePoint同期完了: news ${news.length}件 / members ${members.length}件`,
+    `SharePoint同期完了: news ${news.length}件 / members ${members.length}件 / practice ${practice.length}件`,
   );
 }
 

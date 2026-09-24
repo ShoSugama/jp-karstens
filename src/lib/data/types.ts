@@ -19,6 +19,15 @@ export interface Member {
   photoUrl?: string; // photoFileName から導出される "/images/xxx" パス
 }
 
+export interface PracticeSession {
+  id: string;
+  date: string; // ISO date (YYYY-MM-DD)
+  startTime: string; // "19:00" 形式
+  endTime: string;
+  venue: string;
+  note?: string;
+}
+
 export interface NewsItem {
   slug: string;
   title: string;

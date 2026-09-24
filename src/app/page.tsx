@@ -5,6 +5,7 @@ import Card from "@/components/Card";
 import NewsListItem from "@/components/NewsListItem";
 import { getUpcomingGame } from "@/lib/data/schedule";
 import { getNewsList } from "@/lib/data/news";
+import { withBasePath } from "@/lib/basePath";
 import styles from "./page.module.css";
 
 function formatDate(iso: string) {
@@ -27,7 +28,7 @@ export default async function Home() {
     <Container>
       <section className={styles.hero}>
         <Image
-          src="/images/hero.jpg"
+          src={withBasePath("/images/hero.jpg")}
           alt="Karstens"
           width={960}
           height={480}

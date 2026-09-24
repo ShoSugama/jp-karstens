@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
-
-const repoName = "jp-karstens";
+import { BASE_PATH } from "./src/lib/basePath";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: `/${repoName}`,
-  assetPrefix: `/${repoName}/`,
+  basePath: BASE_PATH,
+  assetPrefix: `${BASE_PATH}/`,
   images: { unoptimized: true },
   trailingSlash: true,
 };

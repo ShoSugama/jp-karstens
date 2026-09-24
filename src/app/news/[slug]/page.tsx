@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import { getNewsBySlug, getNewsList } from "@/lib/data/news";
+import { withBasePath } from "@/lib/basePath";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
@@ -46,7 +47,7 @@ export default async function NewsDetailPage({
       <h1 className={styles.title}>{item.title}</h1>
       {item.photoUrl && (
         <Image
-          src={item.photoUrl}
+          src={withBasePath(item.photoUrl)}
           alt={item.title}
           width={800}
           height={450}

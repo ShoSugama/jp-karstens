@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Member } from "@/lib/data/types";
+import { withBasePath } from "@/lib/basePath";
 import Card from "./Card";
 import styles from "./MemberCard.module.css";
 
@@ -8,7 +9,7 @@ export default function MemberCard({ member }: { member: Member }) {
     <Card>
       {member.photoUrl && (
         <Image
-          src={member.photoUrl}
+          src={withBasePath(member.photoUrl)}
           alt={member.name}
           width={160}
           height={160}

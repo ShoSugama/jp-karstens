@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Photo } from "@/lib/data/types";
+import { withBasePath } from "@/lib/basePath";
 import styles from "./PhotoGrid.module.css";
 
 export default function PhotoGrid({ photos }: { photos: Photo[] }) {
@@ -12,7 +13,7 @@ export default function PhotoGrid({ photos }: { photos: Photo[] }) {
       {photos.map((photo) => (
         <figure key={photo.id} className={styles.item}>
           <Image
-            src={photo.url}
+            src={withBasePath(photo.url)}
             alt={photo.caption ?? ""}
             width={400}
             height={300}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Card from "@/components/Card";
@@ -25,6 +26,14 @@ export default async function Home() {
   return (
     <Container>
       <section className={styles.hero}>
+        <Image
+          src="/images/hero.jpg"
+          alt="Karstens"
+          width={960}
+          height={480}
+          priority
+          className={styles.heroImage}
+        />
         <p className={styles.heroTitle}>Karstens 公式サイト</p>
         <p className={styles.heroLead}>
           楽しく、真剣に。仕事の合間に白球を追いかけるKarstensです。

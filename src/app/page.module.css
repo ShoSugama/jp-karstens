@@ -6,6 +6,15 @@
   margin-bottom: 2rem;
 }
 
+.heroImage {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
 .heroTitle {
   font-size: 1.75rem;
   font-weight: 800;

@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "社内野球部",
-  description: "社内野球部の活動を紹介するモックサイトです。",
+  title: "Karstens",
+  description: "Karstensの活動を紹介するモックサイトです。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

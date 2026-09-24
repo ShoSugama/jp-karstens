@@ -4,7 +4,7 @@ import { getSchedule } from "@/lib/data/schedule";
 import styles from "../page.module.css";
 
 export const metadata = {
-  title: "試合日程 | 社内野球部",
+  title: "試合日程 | Karstens",
 };
 
 export default async function SchedulePage() {

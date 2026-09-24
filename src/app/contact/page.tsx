@@ -3,7 +3,7 @@ import sectionStyles from "../page.module.css";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "部員募集 / お問い合わせ | 社内野球部",
+  title: "部員募集 / お問い合わせ | Karstens",
 };
 
 export default function ContactPage() {
@@ -11,7 +11,7 @@ export default function ContactPage() {
     <Container>
       <h1 className={sectionStyles.sectionTitle}>部員募集 / お問い合わせ</h1>
       <p className={styles.lead}>
-        社内野球部では、一緒にプレーする仲間を募集しています。
+        Karstensでは、一緒にプレーする仲間を募集しています。
         野球経験の有無は問いません。まずはお気軽にご連絡ください。
       </p>
 

@@ -4,7 +4,7 @@ import { getNewsList } from "@/lib/data/news";
 import styles from "../page.module.css";
 
 export const metadata = {
-  title: "ニュース | 社内野球部",
+  title: "ニュース | Karstens",
 };
 
 export default async function NewsPage() {

@@ -10,7 +10,7 @@ export default function Header() {
           <span className={styles.logo} aria-hidden="true">
             ⚾
           </span>
-          社内野球部
+          Karstens(カーステンズ)
         </Link>
         <Nav />
       </div>

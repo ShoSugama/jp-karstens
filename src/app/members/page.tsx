@@ -5,7 +5,7 @@ import sectionStyles from "../page.module.css";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "メンバー紹介 | 社内野球部",
+  title: "メンバー紹介 | Karstens",
 };
 
 export default async function MembersPage() {

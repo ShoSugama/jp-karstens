@@ -16,7 +16,7 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const item = await getNewsBySlug(slug);
-  return { title: item ? `${item.title} | 社内野球部` : "社内野球部" };
+  return { title: item ? `${item.title} | Karstens` : "Karstens" };
 }
 
 function formatDate(iso: string) {

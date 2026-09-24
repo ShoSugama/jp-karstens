@@ -25,9 +25,9 @@ export default async function Home() {
   return (
     <Container>
       <section className={styles.hero}>
-        <p className={styles.heroTitle}>社内野球部 公式サイト</p>
+        <p className={styles.heroTitle}>Karstens 公式サイト</p>
         <p className={styles.heroLead}>
-          楽しく、真剣に。仕事の合間に白球を追いかける社内野球部です。
+          楽しく、真剣に。仕事の合間に白球を追いかけるKarstensです。
           未経験者から経験者まで、一緒にプレーする仲間を募集しています。
         </p>
         <Link href="/contact" className={styles.cta}>
